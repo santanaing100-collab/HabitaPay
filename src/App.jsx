@@ -6,12 +6,18 @@ import {
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Residentes from "./pages/Residentes";
 
 function App() {
   return (
     <BrowserRouter>
 
       <Routes>
+
+        <Route
+          path="/residentes"
+          element={<Residentes />}
+        />
 
         <Route
           path="/"
