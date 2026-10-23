@@ -15,21 +15,15 @@ function Login() {
       }}
     >
       <div className="login-left">
+        <h1>Vecinos de Ferrocarriles Nacionales 830</h1>
 
-        <h1>
-          Vecinos de Ferrocarriles Nacionales 830
-        </h1>
-
-        <p>
-          Plataforma para pagos, avisos y gestión comunitaria.
-        </p>
-
+        <p>Plataforma para pagos, avisos y gestión comunitaria.</p>
+        <div className="copyright">© 2026 Ferrocarriles Nacionales 830</div>
       </div>
 
       <div className="login-right">
         <LoginForm />
       </div>
-
     </div>
   );
 }

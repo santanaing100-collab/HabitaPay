@@ -95,5 +95,10 @@
     width:100%;
     max-width:420px;
   }
+  .copyright{
+  margin-top:15px;
+  color:#cbd5e1;
+  font-size:.9rem;
+  }
 
 } 

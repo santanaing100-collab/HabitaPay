@@ -1,5 +1,4 @@
 import { FaUser, FaLock, FaBuilding } from "react-icons/fa";
-
 function LoginForm() {
   return (
     <div className="login-card">
@@ -35,6 +34,11 @@ function LoginForm() {
       <button className="btn btn-primary w-100">
         Iniciar Sesión
       </button>
+      <div className="text-center mt-3">
+  <a href="#">
+    ¿Olvidaste tu contraseña?
+  </a>
+</div>
 
       <div className="text-center mt-3 text-muted">
       <small>Versión 1.0.0</small>
