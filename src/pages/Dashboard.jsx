@@ -1,14 +1,34 @@
 function Dashboard() {
   return (
-    <div className="container mt-5">
+    <div className="row mt-4">
 
-      <h1>
-        Bienvenido al Dashboard
-      </h1>
+      <div className="col-md-3 mb-3">
+        <div className="card p-3 shadow">
+          <h6>Residentes</h6>
+          <h2>0</h2>
+        </div>
+      </div>
 
-      <p>
-        Has iniciado sesión correctamente.
-      </p>
+      <div className="col-md-3 mb-3">
+        <div className="card p-3 shadow">
+          <h6>Pagos</h6>
+          <h2>0</h2>
+        </div>
+      </div>
+
+      <div className="col-md-3 mb-3">
+        <div className="card p-3 shadow">
+          <h6>Adeudos</h6>
+          <h2>0</h2>
+        </div>
+      </div>
+
+      <div className="col-md-3 mb-3">
+        <div className="card p-3 shadow">
+          <h6>Incidencias</h6>
+          <h2>0</h2>
+        </div>
+      </div>
 
     </div>
   );
