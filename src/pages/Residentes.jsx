@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
-import { obtenerResidentes } from "../firebase/firestore";
+
+import {
+  obtenerResidentes,
+  eliminarResidente
+} from "../firebase/firestore";
+
 import FormularioResidente from "../components/FormularioResidente";
+
+
+
 function Residentes() {
 
   const [residentes, setResidentes] = useState([]);
+  const [residenteEditar, setResidenteEditar] = useState(null);
 
   useEffect(() => {
 
@@ -21,12 +30,40 @@ function Residentes() {
 
   };
 
+  const borrarResidente = async (id) => {
+
+    if (!window.confirm("¿Eliminar residente?")) {
+      return;
+    }
+
+    await eliminarResidente(id);
+
+    cargarResidentes();
+
+  };
+
   return (
     <div className="container mt-4">
 
       <h1>Residentes</h1>
+      {residenteEditar && (
 
-      <FormularioResidente />
+  <div className="alert alert-warning">
+
+    Editando:
+
+    <strong>
+      {" "}
+      {residenteEditar.nombre}
+    </strong>
+
+  </div>
+
+)}
+
+      <FormularioResidente
+        actualizar={cargarResidentes}
+      />
 
       <table className="table table-striped mt-4">
 
@@ -37,20 +74,55 @@ function Residentes() {
             <th>Teléfono</th>
             <th>Correo</th>
             <th>Estatus</th>
+            <th>Acciones</th>
           </tr>
         </thead>
 
         <tbody>
 
-          {residentes.map((residentes) => (
+          {residentes.map((residente) => (
 
-            <tr key={residentes.id}>
+            <tr key={residente.id}>
 
-              <td>{residentes.nombre}</td>
-              <td>{residentes.departamento}</td>
-              <td>{residentes.telefono}</td>
-              <td>{residentes.correo}</td>
-              <td>{residentes.estatus}</td>
+              <td>{residente.nombre}</td>
+              <td>{residente.departamento}</td>
+              <td>{residente.telefono}</td>
+              <td>{residente.correo}</td>
+
+              <td>
+
+                <button
+                  className="btn btn-warning btn-sm me-2"
+                  onClick={() => setResidenteEditar(residente)}
+                >
+                  ✏️
+                </button>
+
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => borrarResidente(residente.id)}
+                >
+                  🗑️
+                </button>
+
+              </td>
+
+              <td>
+
+                <button
+                  className="btn btn-warning btn-sm me-2"
+                >
+                  ✏️
+                </button>
+
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={() => borrarResidente(residente.id)}
+                >
+                  🗑️
+                </button>
+
+              </td>
 
             </tr>
 

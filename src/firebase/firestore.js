@@ -1,15 +1,17 @@
-import { addDoc } from "firebase/firestore";
-
 import {
   getFirestore,
   collection,
-  getDocs
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc
 } from "firebase/firestore";
 
 import app from "./config";
 
 export const db = getFirestore(app);
 
+// Obtener residentes
 export const obtenerResidentes = async () => {
 
   const querySnapshot = await getDocs(
@@ -23,11 +25,21 @@ export const obtenerResidentes = async () => {
 
 };
 
+// Agregar residente
 export const agregarResidente = async (residente) => {
 
   await addDoc(
     collection(db, "residentes"),
     residente
+  );
+
+};
+
+// Eliminar residente
+export const eliminarResidente = async (id) => {
+
+  await deleteDoc(
+    doc(db, "residentes", id)
   );
 
 };
