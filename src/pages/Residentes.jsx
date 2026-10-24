@@ -48,18 +48,18 @@ function Residentes() {
       <h1>Residentes</h1>
       {residenteEditar && (
 
-  <div className="alert alert-warning">
+        <div className="alert alert-warning">
 
-    Editando:
+          Editando:
 
-    <strong>
-      {" "}
-      {residenteEditar.nombre}
-    </strong>
+          <strong>
+            {" "}
+            {residenteEditar.nombre}
+          </strong>
 
-  </div>
+        </div>
 
-)}
+      )}
 
       <FormularioResidente
         actualizar={cargarResidentes}
@@ -88,6 +88,7 @@ function Residentes() {
               <td>{residente.departamento}</td>
               <td>{residente.telefono}</td>
               <td>{residente.correo}</td>
+              <td>{residente.estatus}</td>
 
               <td>
 
@@ -107,27 +108,10 @@ function Residentes() {
 
               </td>
 
-              <td>
-
-                <button
-                  className="btn btn-warning btn-sm me-2"
-                >
-                  ✏️
-                </button>
-
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => borrarResidente(residente.id)}
-                >
-                  🗑️
-                </button>
-
-              </td>
-
             </tr>
 
           ))}
-
+          
         </tbody>
 
       </table>

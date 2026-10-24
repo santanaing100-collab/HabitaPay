@@ -78,7 +78,7 @@ function FormularioResidente({ actualizar }) {
       >
         Guardar Residente
       </button>
-
+p
     </div>
 
   );
