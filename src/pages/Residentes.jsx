@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { obtenerResidentes } from "../firebase/firestore";
-
+import FormularioResidente from "../components/FormularioResidente";
 function Residentes() {
 
   const [residentes, setResidentes] = useState([]);
@@ -25,6 +25,8 @@ function Residentes() {
     <div className="container mt-4">
 
       <h1>Residentes</h1>
+
+      <FormularioResidente />
 
       <table className="table table-striped mt-4">
 

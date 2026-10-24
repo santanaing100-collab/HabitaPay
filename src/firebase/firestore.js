@@ -1,3 +1,5 @@
+import { addDoc } from "firebase/firestore";
+
 import {
   getFirestore,
   collection,
@@ -18,4 +20,14 @@ export const obtenerResidentes = async () => {
     id: doc.id,
     ...doc.data()
   }));
+
+};
+
+export const agregarResidente = async (residente) => {
+
+  await addDoc(
+    collection(db, "residentes"),
+    residente
+  );
+
 };
