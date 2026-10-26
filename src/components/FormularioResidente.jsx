@@ -1,7 +1,14 @@
-import { useState } from "react";
-import { agregarResidente } from "../firebase/firestore";
+import { useState, useEffect } from "react";
 
-function FormularioResidente({ actualizar }) {
+import {
+  agregarResidente,
+  actualizarResidente
+} from "../firebase/firestore";
+
+function FormularioResidente({
+  actualizar,
+  residenteEditar
+}) {
 
   const [nombre, setNombre] = useState("");
   const [departamento, setDepartamento] = useState("");
@@ -9,15 +16,42 @@ function FormularioResidente({ actualizar }) {
   const [correo, setCorreo] = useState("");
   const [estatus, setEstatus] = useState("Activo");
 
+  useEffect(() => {
+
+    if (residenteEditar) {
+
+      setNombre(residenteEditar.nombre || "");
+      setDepartamento(residenteEditar.departamento || "");
+      setTelefono(residenteEditar.telefono || "");
+      setCorreo(residenteEditar.correo || "");
+      setEstatus(residenteEditar.estatus || "Activo");
+
+    }
+
+  }, [residenteEditar]);
+
   const guardar = async () => {
 
-    await agregarResidente({
+    const datos = {
       nombre,
       departamento,
       telefono,
       correo,
       estatus
-    });
+    };
+
+    if (residenteEditar) {
+
+      await actualizarResidente(
+        residenteEditar.id,
+        datos
+      );
+
+    } else {
+
+      await agregarResidente(datos);
+
+    }
 
     actualizar();
 
@@ -33,7 +67,11 @@ function FormularioResidente({ actualizar }) {
 
     <div className="card p-3 mb-4">
 
-      <h4>Nuevo Residente</h4>
+      <h4>
+        {residenteEditar
+          ? "Editar Residente"
+          : "Nuevo Residente"}
+      </h4>
 
       <input
         className="form-control mb-2"
@@ -76,9 +114,11 @@ function FormularioResidente({ actualizar }) {
         className="btn btn-success"
         onClick={guardar}
       >
-        Guardar Residente
+        {residenteEditar
+          ? "Actualizar Residente"
+          : "Guardar Residente"}
       </button>
-p
+
     </div>
 
   );

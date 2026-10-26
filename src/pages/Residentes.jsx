@@ -13,6 +13,7 @@ function Residentes() {
 
   const [residentes, setResidentes] = useState([]);
   const [residenteEditar, setResidenteEditar] = useState(null);
+  const [busqueda, setBusqueda] = useState("");
 
   useEffect(() => {
 
@@ -63,8 +64,15 @@ function Residentes() {
 
       <FormularioResidente
         actualizar={cargarResidentes}
+        residenteEditar={residenteEditar}
       />
-
+      <input
+        type="text"
+        className="form-control mb-3"
+        placeholder="🔎 Buscar residente..."
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+      />
       <table className="table table-striped mt-4">
 
         <thead>
@@ -80,38 +88,44 @@ function Residentes() {
 
         <tbody>
 
-          {residentes.map((residente) => (
+          {residentes
+            .filter((residente) =>
+              residente.nombre
+                ?.toLowerCase()
+                .includes(busqueda.toLowerCase())
+            )
+            .map((residente) => (
 
-            <tr key={residente.id}>
+              <tr key={residente.id}>
 
-              <td>{residente.nombre}</td>
-              <td>{residente.departamento}</td>
-              <td>{residente.telefono}</td>
-              <td>{residente.correo}</td>
-              <td>{residente.estatus}</td>
+                <td>{residente.nombre}</td>
+                <td>{residente.departamento}</td>
+                <td>{residente.telefono}</td>
+                <td>{residente.correo}</td>
+                <td>{residente.estatus}</td>
 
-              <td>
+                <td>
 
-                <button
-                  className="btn btn-warning btn-sm me-2"
-                  onClick={() => setResidenteEditar(residente)}
-                >
-                  ✏️
-                </button>
+                  <button
+                    className="btn btn-warning btn-sm me-2"
+                    onClick={() => setResidenteEditar(residente)}
+                  >
+                    ✏️
+                  </button>
 
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => borrarResidente(residente.id)}
-                >
-                  🗑️
-                </button>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => borrarResidente(residente.id)}
+                  >
+                    🗑️
+                  </button>
 
-              </td>
+                </td>
 
-            </tr>
+              </tr>
 
-          ))}
-          
+            ))}
+
         </tbody>
 
       </table>

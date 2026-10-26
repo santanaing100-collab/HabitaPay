@@ -7,7 +7,7 @@ import {
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Residentes from "./pages/Residentes";
-
+import Pagos from "./pages/Pagos";
 function App() {
   return (
     <BrowserRouter>
@@ -27,6 +27,10 @@ function App() {
         <Route
           path="/dashboard"
           element={<Dashboard />}
+        />
+        <Route
+          path="/pagos"
+          element={<Pagos />}
         />
 
       </Routes>
