@@ -10,6 +10,7 @@ import Residentes from "./pages/Residentes";
 import Pagos from "./pages/Pagos";
 import Adeudos from "./pages/Adeudos";
 import EstadoCuenta from "./pages/EstadoCuenta";
+import Incidencias from "./pages/Incidencias";
 function App() {
   return (
     <BrowserRouter>
@@ -44,6 +45,12 @@ function App() {
           path="/estado-cuenta"
           element={<EstadoCuenta />}
         />
+        
+        <Route
+          path="/incidencias"
+          element={<Incidencias />}
+        />
+
 
       </Routes>
 

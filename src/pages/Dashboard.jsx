@@ -172,6 +172,17 @@ function Dashboard() {
           </a>
 
         </div>
+        
+        <div className="col-md-4 mb-2">
+
+          <a
+            href="/incidencias"
+            className="btn btn-warning w-100"
+          >
+            Incidencias
+          </a>
+
+        </div>
 
       </div>
 
