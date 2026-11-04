@@ -55,73 +55,54 @@ function EstadoCuenta() {
 
     const doc = new jsPDF();
 
-    doc.setFontSize(18);
+    const fechaActual = new Date().toLocaleDateString();
+
+    doc.setFillColor(41, 128, 185);
+    doc.rect(0, 0, 210, 30, "F");
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(20);
     doc.text("HABITAPAY", 20, 20);
 
-    doc.setFontSize(14);
-    doc.text("Estado de Cuenta", 20, 35);
+    doc.setTextColor(0, 0, 0);
+
+    doc.setFontSize(16);
+    doc.text("Estado de Cuenta", 20, 45);
+
+    doc.setFontSize(10);
+    doc.text(
+      `Fecha de emision: ${fechaActual}`,
+      20,
+      55
+    );
+
+    doc.line(20, 60, 190, 60);
 
     doc.setFontSize(12);
 
     doc.text(
       `Residente: ${residente}`,
       20,
-      50
+      75
     );
 
     doc.text(
       `Total Pagado: $${totalPagado}`,
       20,
-      65
+      85
     );
 
     doc.text(
       `Total Adeudado: $${totalAdeudado}`,
       20,
-      80
-    );
-
-    doc.text(
-      `Saldo: $${saldo}`,
-      20,
       95
     );
 
-    let y = 120;
-
-    doc.text("PAGOS", 20, y);
-
-    y += 10;
-
-    pagosFiltrados.forEach((pago) => {
-
-      doc.text(
-        `${pago.fecha} | $${pago.monto} | ${pago.concepto}`,
-        20,
-        y
-      );
-
-      y += 10;
-
-    });
-
-    y += 10;
-
-    doc.text("ADEUDOS", 20, y);
-
-    y += 10;
-
-    adeudosFiltrados.forEach((adeudo) => {
-
-      doc.text(
-        `${adeudo.fechaLimite} | $${adeudo.monto} | ${adeudo.concepto}`,
-        20,
-        y
-      );
-
-      y += 10;
-
-    });
+    doc.text(
+      `Saldo Actual: $${saldo}`,
+      20,
+      105
+    );
 
     doc.save(
       `EstadoCuenta-${residente}.pdf`
@@ -140,18 +121,22 @@ function EstadoCuenta() {
         value={residente}
         onChange={(e) => setResidente(e.target.value)}
       >
+
         <option value="">
           Selecciona un residente
         </option>
 
         {residentes.map((r) => (
+
           <option
             key={r.id}
             value={r.nombre}
           >
             {r.nombre}
           </option>
+
         ))}
+
       </select>
 
       {residente && (
@@ -166,21 +151,15 @@ function EstadoCuenta() {
             <h5>Resumen Financiero</h5>
 
             <p>
-              <strong>Total Pagado:</strong>
-              {" "}
-              ${totalPagado}
+              <strong>Total Pagado:</strong> ${totalPagado}
             </p>
 
             <p>
-              <strong>Total Adeudado:</strong>
-              {" "}
-              ${totalAdeudado}
+              <strong>Total Adeudado:</strong> ${totalAdeudado}
             </p>
 
             <p>
-              <strong>Saldo:</strong>
-              {" "}
-              ${saldo}
+              <strong>Saldo:</strong> ${saldo}
             </p>
 
             <div
